@@ -37,7 +37,32 @@
         </div>
     </div>
 </nav>
-<h1>Hello, world!</h1>
+
+
+<div class ="container">
+    <table class="table table-condensed">
+    <thead>
+
+        <tr>
+            <th>이메일</th>
+            <th>비밀번호</th>
+            <th>주소</th>
+        </tr>
+    </thead>
+    <tbody>
+    {{#users}}
+    <tr>
+        <th scope="row">{{email}}</th>>
+        <td>{{password}}</td>
+        <td>{{address}}</td>
+    </tr>
+    {{/users}}
+    </tbody>
+
+    </table>
+</div>
+
+
 
 <!-- Optional JavaScript; choose one of the two! -->
 
