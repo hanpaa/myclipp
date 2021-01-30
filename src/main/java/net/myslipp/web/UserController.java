@@ -19,8 +19,7 @@ public class UserController {
 
         System.out.print("email: " + user);
         users.add(user);
-
-        return "create";
+        return "redirect:/list";
     }
 
 
