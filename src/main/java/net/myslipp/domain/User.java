@@ -1,8 +1,20 @@
-package net.myslipp.web;
+package net.myslipp.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class User {
 
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    @Column(nullable = false, length = 20)
     private String password;
+
     private String email;
     private String address;
 
