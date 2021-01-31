@@ -11,18 +11,18 @@ import java.util.List;
 @Controller
 public class WelcomeController {
 
-    @GetMapping("/hello")
-    public String welcome(String name, int age, Model model){
-        List<MyModel> repo = Arrays.asList(new MyModel("jaehyeon"), new MyModel("javajigi"));
-        model.addAttribute("repo", repo);
-        //        System.out.println("name : " + name);
-//        model.addAttribute("name", name);
-//        model.addAttribute("age", age);
-        return "welcome";
-    }
-
-    @GetMapping("/form")
-    public String from(){
-        return "form";
-    }
+//    @GetMapping("/hello")
+//    public String welcome(String name, int age, Model model){
+//        List<MyModel> repo = Arrays.asList(new MyModel("jaehyeon"), new MyModel("javajigi"));
+//        model.addAttribute("repo", repo);
+//        //        System.out.println("name : " + name);
+////        model.addAttribute("name", name);
+////        model.addAttribute("age", age);
+//        return "welcome";
+//    }
+//
+//    @GetMapping("/form")
+//    public String from(){
+//        return "form";
+//    }
 }

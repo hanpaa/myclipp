@@ -65,7 +65,6 @@ public class User {
         return "User{" +
                 "password='" + password + '\'' +
                 ", email='" + email + '\'' +
-                ", address='" + address + '\'' +
                 '}';
     }
 }
