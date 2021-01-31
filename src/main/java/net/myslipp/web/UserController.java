@@ -19,7 +19,7 @@ public class UserController {
     private UserRepository userRepository; //userRepository 자동으로 땡겨서 쓴다.
 
     @PostMapping("/create")
-    public String create(User user){
+    public String create(User user){ //commit
 
         System.out.print("email: " + user);
         userRepository.save(user);
@@ -32,5 +32,6 @@ public class UserController {
         model.addAttribute("users", userRepository.findAll());
         return "list";
     }
+
 
 }
