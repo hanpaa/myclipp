@@ -42,6 +42,7 @@ public class UserController {
     @GetMapping("/user/list")
     public String getUserList(Model model){
         model.addAttribute("users", userRepository.findAll());
+        return "list";
     }
 
 }
