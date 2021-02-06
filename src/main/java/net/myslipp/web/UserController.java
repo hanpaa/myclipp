@@ -18,19 +18,19 @@ public class UserController {
     @Autowired
     private UserRepository userRepository; //userRepository 자동으로 땡겨서 쓴다.
 
-    @PostMapping("/create")
+    @PostMapping("/user/create")
     public String create(User user){ //commit
 
         System.out.print("email: " + user);
         userRepository.save(user);
-        return "redirect:/list";
+        return "redirect:/user/list";
     }
 
 
-    @GetMapping("/list")
+    @GetMapping("/user/list")
     public String list(Model model){
         model.addAttribute("users", userRepository.findAll());
-        return "list";
+        return "/user/list";
     }
 
 

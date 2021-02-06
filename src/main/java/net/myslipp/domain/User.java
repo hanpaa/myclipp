@@ -1,22 +1,19 @@
 package net.myslipp.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class User {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false, length = 20)
     private String userId;
     private String password;
 
-    private String userName;
+    private String name;
     private String email;
 
 
@@ -44,12 +41,12 @@ public class User {
         this.password = password;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getName() {
+        return name;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
@@ -65,7 +62,6 @@ public class User {
         return "User{" +
                 "password='" + password + '\'' +
                 ", email='" + email + '\'' +
-                ", address='" + address + '\'' +
                 '}';
     }
 }
