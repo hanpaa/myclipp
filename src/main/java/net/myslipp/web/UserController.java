@@ -8,26 +8,28 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@RequestMapping("/users") //기본 URL
 public class UserController {
 
     @Autowired
     private UserRepository userRepository; //userRepository 자동으로 땡겨서 쓴다.
 
-    @PostMapping("/user/create")
+    @PostMapping("") //같은 users라도 post 일 경우 +
     public String create(User user){ //commit
 
         System.out.print("email: " + user);
         userRepository.save(user);
-        return "redirect:/user/list";
+        return "redirect:/users";
     }
 
 
-    @GetMapping("/user/list")
+    @GetMapping("")
     public String list(Model model){
         model.addAttribute("users", userRepository.findAll());
         return "/user/list";
