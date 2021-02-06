@@ -35,5 +35,19 @@ public class UserController {
         return "/user/list";
     }
 
+    @GetMapping("/form")
+    public String form(){
+        return "/user/form";
+    }
+
+    @GetMapping("/login")
+    public String login(){
+        return "/user/login";
+    }
+
+    @GetMapping("/profile")
+    public String profile(){
+        return "/user/profile";
+    }
 
 }
