@@ -64,4 +64,10 @@ public class User {
                 ", email='" + email + '\'' +
                 '}';
     }
+
+    public void update(User updateUser) {
+        this.password = updateUser.password;
+        this.name = updateUser.name;
+        this.email = updateUser.email;
+    }
 }

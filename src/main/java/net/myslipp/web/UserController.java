@@ -41,11 +41,19 @@ public class UserController {
         return "/user/form";
     }
 
-    @GetMapping("{userId}/form")
-    public String updateForm(@PathVariable Long userId, Model model){
-        User user = userRepository.findById(userId).get();
+    @GetMapping("{id}/form")
+    public String updateForm(@PathVariable Long id, Model model){
+        User user = userRepository.findById(id).get();
         model.addAttribute("user", user);
         return "/user/updateForm";
+    }
+
+    @PostMapping("/{id}")
+    public String update(@PathVariable Long id, User updateUser){
+        User user = userRepository.findById(id).get();
+        user.update(updateUser);
+        userRepository.save(user);
+        return "redirect:/users";
     }
 
     @GetMapping("/login")
