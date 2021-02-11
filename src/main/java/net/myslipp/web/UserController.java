@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +18,8 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository; //userRepository 자동으로 땡겨서 쓴다.
+
+
 
     @PostMapping("") //같은 users라도 post 일 경우 +
     public String create(User user){ //commit
@@ -55,9 +58,26 @@ public class UserController {
         return "redirect:/users";
     }
 
-    @GetMapping("/login")
-    public String login(){
+    @GetMapping("/loginForm")
+    public String loginForm(){
         return "/user/login";
+    }
+
+    @PostMapping("/login")
+    public String login(String userId, String password, HttpSession session){
+
+        User user = userRepository.findByUserId(userId);
+        if(user == null){
+            return "redirect:/users/loginForm";
+        }
+        if(!password.equals(user.getPassword())){
+            return "redirect:/users/loginForm";
+
+        System.out.println("login Success!");
+        //session 사용
+        session.setAttribute("user", user);
+
+        return "redirect:/";
     }
 
     @GetMapping("/profile")
