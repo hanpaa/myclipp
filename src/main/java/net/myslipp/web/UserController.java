@@ -43,19 +43,31 @@ public class UserController {
 
     @GetMapping("{id}/form")
     public String updateForm(@PathVariable Long id, Model model, HttpSession session){
-        Object sessionedUser = session.getAttribute("userSession");
-        if(sessionedUser == null){
+        Object tempUser = session.getAttribute("userSession");
+        if(tempUser == null){
             return "redirect:/users/loginForm";
         }
+
+        User sessionedUser = (User)tempUser;
+
+        //자신의 세션일때만 아이디 수정을 할 수 있다.
+        if(!id.equals(sessionedUser.getId())){
+            throw new IllegalStateException("자신의 정보만 수정할 수 있습니다.");
+        }
+
+
         User user = userRepository.findById(id).get();
+
+//        User user = userRepository.findById(sessionedUser.getId()).get();
         model.addAttribute("user", user);
+
         return "/user/updateForm";
     }
 
     //html은 get와 post만 지원하지만, put쓰는게 좋긴함
 
     @PutMapping("/{id}")
-    public String update(@PathVariable Long id, User updateUser){
+    public String update(@PathVariable Long id, User updateUser, HttpSession session){
         User user = userRepository.findById(id).get();
         user.update(updateUser);
         userRepository.save(user);
