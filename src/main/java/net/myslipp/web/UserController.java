@@ -42,7 +42,11 @@ public class UserController {
     }
 
     @GetMapping("{id}/form")
-    public String updateForm(@PathVariable Long id, Model model){
+    public String updateForm(@PathVariable Long id, Model model, HttpSession session){
+        Object sessionedUser = session.getAttribute("userSession");
+        if(sessionedUser == null){
+            return "redirect:/users/loginForm";
+        }
         User user = userRepository.findById(id).get();
         model.addAttribute("user", user);
         return "/user/updateForm";
@@ -76,7 +80,7 @@ public class UserController {
 
             System.out.println("login Success!");
             //session 사용
-            session.setAttribute("user", user);
+            session.setAttribute("userSession", user);
 
             return "redirect:/";
 
@@ -84,7 +88,7 @@ public class UserController {
 
     @GetMapping("/logout")
     public String logout(HttpSession session){
-        session.removeAttribute("user");
+        session.removeAttribute("userSession");
         return "redirect:/";
     }
 
