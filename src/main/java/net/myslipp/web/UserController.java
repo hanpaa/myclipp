@@ -58,25 +58,33 @@ public class UserController {
         return "redirect:/users";
     }
 
-    @GetMapping("/loginForm")
+    @GetMapping("/loginform")
     public String loginForm(){
         return "/user/login";
     }
 
     @PostMapping("/login")
-    public String login(String userId, String password, HttpSession session){
+    public String login(String userId, String password, HttpSession session) {
 
         User user = userRepository.findByUserId(userId);
-        if(user == null){
+        if (user == null) {
             return "redirect:/users/loginForm";
         }
-        if(!password.equals(user.getPassword())){
+        if (!password.equals(user.getPassword())) {
             return "redirect:/users/loginForm";
+        }
 
-        System.out.println("login Success!");
-        //session 사용
-        session.setAttribute("user", user);
+            System.out.println("login Success!");
+            //session 사용
+            session.setAttribute("user", user);
 
+            return "redirect:/";
+
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session){
+        session.removeAttribute("user");
         return "redirect:/";
     }
 
